@@ -1,0 +1,23 @@
+{% if bind_acls is defined %}
+acl {{ bind_acls.name }} {
+{%     for item in bind_acls.networks %}
+    {{ item }};
+{%     endfor %}
+};
+{% endif %}
+options {
+    directory "/var/cache/bind";
+    recursion yes;
+    allow-query { {{ bind_acls.name }}; };
+{% if bind_forwarding_server %}
+    forwarders {
+{%   for item in bind_forwarders %}
+        {{ item }};
+{%   endfor %}
+    };
+    forward only;
+{% endif %}
+    dnssec-validation auto;
+    auth-nxdomain no;    # conform to RFC1035
+    listen-on-v6 { any; };
+};
