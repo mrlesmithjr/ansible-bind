@@ -1,6 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    bind_config: true
   tasks:
     - name: Include ansible-bind
       include_role:
