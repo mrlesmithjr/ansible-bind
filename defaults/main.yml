@@ -81,6 +81,8 @@ bind_manage_zones: false
 bind_masters_group: bind-masters
 bind_pri_domain_name: vagrant.local
 
+bind_recursion_enabled: true
+
 bind_reverse_zones:
   []
   # - zone: 192.168
