@@ -78,7 +78,7 @@ bind_forwarders:
 bind_manage_zones: false
 
 # Defines Ansible group which defines the Bind masters
-bind_masters_group: bind-masters
+bind_masters_group: bindmasters
 bind_pri_domain_name: vagrant.local
 
 bind_reverse_zones:
@@ -114,5 +114,5 @@ bind_reverse_zones:
   #   soa: "{{ ansible_hostname }}.{{ bind_pri_domain_name }}"
   #   ttl: 604800
 
-bind_slaves_group: bind-slaves
+bind_slaves_group: bindslaves
 bind_zones_dir: /etc/bind/zones
