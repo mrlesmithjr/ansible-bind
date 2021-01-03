@@ -9,8 +9,10 @@ acl {{ acl['name'] }} {
 {% endif %}
 options {
     directory "/var/cache/bind";
-    recursion yes;
+    recursion {% if bind_recursion_enabled %}yes{% else %}no{% endif %};
+{% if bind_acls is defined and bind_acls|length %}
     allow-query { {% for item in bind_acls %}{{ item['name'] }};{% if not loop.last %} {% endif %}{% endfor %} };
+{% endif %}
 {% if bind_forwarding_server %}
     forwarders {
 {%   for item in bind_forwarders %}
@@ -22,4 +24,7 @@ options {
     dnssec-validation auto;
     auth-nxdomain no;    # conform to RFC1035
     listen-on-v6 { any; };
+{% if bind_show_version == false %}
+    version none;
+{% endif %}
 };
