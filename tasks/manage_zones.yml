@@ -20,7 +20,7 @@
     path: "{{ bind_zones_dir }}"
     state: directory
   become: true
-  when: inventory_hostname in groups[bind_masters_group]
+  when: bind_masters_group in group_names
 
 - name: manage_zones | creating forward zones
   template:
@@ -33,7 +33,7 @@
   notify:
     - reload bind
   with_items: "{{ bind_forward_zones }}"
-  when: inventory_hostname in groups[bind_masters_group]
+  when: bind_masters_group in group_names
 
 - name: manage_zones | creating reverse zones
   template:
@@ -46,4 +46,4 @@
   notify:
     - reload bind
   with_items: "{{ bind_reverse_zones }}"
-  when: inventory_hostname in groups[bind_masters_group]
+  when: bind_masters_group in group_names
