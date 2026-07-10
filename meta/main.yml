@@ -2,6 +2,8 @@
 galaxy_info:
   author: Larry Smith Jr.
   description: Ansible role to install/configure Bind DNS
+  role_name: bind
+  namespace: mrlesmithjr
   license: MIT
   min_ansible_version: 2.8
 
